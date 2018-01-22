@@ -1,0 +1,20 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: 'AWS::Serverless-2016-10-31'
+Resources:
+  PostFunction:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Handler: main
+      Runtime: go1.x
+      Tracing: Active
+      Events:
+        ProxyApiRoot:
+          Type: Api
+          Properties:
+            Path: /
+            Method: ANY
+        ProxyApiGreedy:
+          Type: Api
+          Properties:
+            Path: '/{proxy+}'
+            Method: ANY
