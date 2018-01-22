@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package com.rynop.coolapi.blog;
+option go_package = "coolapi";
+
+// Blog service to manage users of my blog
+service Blog {
+  // Subscribe creates a blog subscription for user
+  rpc Subscribe(User) returns (User);
+}
+
+// User subscribing to my blog
+message User {
+  string id = 1;
+  string email = 2;
+  string name = 3;
+}
