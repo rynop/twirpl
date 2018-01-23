@@ -53,7 +53,12 @@ curl -H 'Content-Type:application/json' -d '{"term":"wahooo"}' http://localhost:
 env LAMBDA_NAME="TwirplTest" ./deploy.sh
 curl -H 'Content-Type:application/json' -d '{"term":"wahooo"}' https://<your APIG>.execute-api.us-east-1.amazonaws.com/prod/twirp/com.rynop.coolapi.image.Image/CreateGiphy
 ```
-3. See test case at [twirpl_test.go](./twirpl_test.go) for how to use the go client as well as sending protobuf requests.  
+
+### Testing protobuf
+
+> NOTE: currently waiting on resolution to https://github.com/twitchtv/twirp/pull/46 before this will work.  You can patch your generated `service.twirp.go` files until this issue is resolved.
+
+See test case at [twirpl_test.go](./twirpl_test.go) for how to use the go client as well as sending protobuf requests.  
 
 ## CI / Automation
 
