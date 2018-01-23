@@ -2,7 +2,7 @@
 
 Boilerplate/guide for creating 100% serverless [Twirp](https://github.com/twitchtv/twirp) APIs via AWS Lambda and API Gateway.  Supports both JSON and protobuf.
 
-Please read my [blog post]() on why Twirp+APIG+Lambda are a powerful match for creating web APIs.
+Please read my [blog post](https://rynop.com/2018/01/23/twirpl-twirp-go-framework-running-completely-serverless/) on why Twirp+APIG+Lambda are a powerful match for creating web APIs.
 
 ## Setup
 
