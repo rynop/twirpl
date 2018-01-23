@@ -1,6 +1,6 @@
 # Twirpl
 
-Boilerplate/guide for creating 100% serverless [Twirp](https://blog.twitch.tv/twirp-a-sweet-new-rpc-framework-for-go-5f2febbf35f#a99f) via AWS Lambda and API Gateway.  Supports both JSON and protobuf.
+Boilerplate/guide for creating 100% serverless [Twirp](https://blog.twitch.tv/twirp-a-sweet-new-rpc-framework-for-go-5f2febbf35f#a99f) APIs via AWS Lambda and API Gateway.  Supports both JSON and protobuf.
 
 Please read my [blog post]() on why Twirp+APIG+Lambda are a powerful match for creating web APIs.
 
