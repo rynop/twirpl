@@ -12,7 +12,7 @@ import (
 
 func TestHandler(t *testing.T) {
 	//URL for APIG
-	urlPrefix := "https://co5gwn0iah.execute-api.us-east-1.amazonaws.com/prod"
+	urlPrefix := "https://YOURAPIG.execute-api.us-east-1.amazonaws.com/prod"
 
 	//URL for local testing
 	// urlPrefix := "http://localhost:8080"
