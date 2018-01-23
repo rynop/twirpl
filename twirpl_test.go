@@ -6,18 +6,18 @@ import (
 	"net/http"
 	"testing"
 
-	"github.com/rynop/twirpl/rpc/haberdasher"
+	"github.com/rynop/twirpl/rpc/image"
 	"github.com/twitchtv/twirp"
 )
 
 func TestHandler(t *testing.T) {
 	//Client for APIG
-	client := haberdasher.NewHaberdasherProtobufClient("https://XXX.execute-api.us-east-1.amazonaws.com/Stage", &http.Client{})
+	// client := image.NewImageProtobufClient("https://XXX.execute-api.us-east-1.amazonaws.com/Stage", &http.Client{})
 
 	// Un-comment for testing locally
-	// client := haberdasher.NewHaberdasherProtobufClient("http://localhost:8080", &http.Client{})
+	client := image.NewImageProtobufClient("http://localhost:8080", &http.Client{})
 
-	resp, err := client.MakeHat(context.Background(), &haberdasher.Size{Inches: 6})
+	resp, err := client.CreateGiphy(context.Background(), &image.Search{Term: "wahooo"})
 	if err == nil {
 		fmt.Println(resp)
 	} else {
