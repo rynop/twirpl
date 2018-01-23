@@ -18,7 +18,6 @@ func TestHandler(t *testing.T) {
 	//URL for local testing
 	// urlPrefix := "http://localhost:8080"
 
-	// Un-comment for testing locally
 	client := image.NewImageProtobufClient(urlPrefix, &http.Client{})
 
 	//Attach the required accept header for APIG binary support
