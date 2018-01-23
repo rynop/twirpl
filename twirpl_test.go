@@ -21,7 +21,7 @@ func TestHandler(t *testing.T) {
 	// Un-comment for testing locally
 	client := image.NewImageProtobufClient(urlPrefix, &http.Client{})
 
-	//Attach the required
+	//Attach the required accept header for APIG binary support
 	header := make(http.Header)
 	header.Set("Accept", "application/protobuf")
 	ctx := context.Background()
