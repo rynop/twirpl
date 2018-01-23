@@ -56,7 +56,7 @@ curl -H 'Content-Type:application/json' -d '{"term":"wahooo"}' https://<your API
 
 ### Testing protobuf
 
-> NOTE: currently waiting on resolution to https://github.com/twitchtv/twirp/pull/46 before this will work.  You can patch your generated `service.twirp.go` files until this issue is resolved.  You can see the addtion on line 412 of each `service.twirp.go` files in this repo.
+> NOTE: binary support in APIG requires existence of `Accept: application/protobuf` request header
 
 See test case at [twirpl_test.go](./twirpl_test.go) for how to use the go client as well as sending protobuf requests.  
 
