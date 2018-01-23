@@ -44,19 +44,19 @@ cd ..
 go build -o bin/main
 ./bin/main
 #in another terminal tab:
-curl -H 'Content-Type:application/json' -d '{"term":"wahooo"}' http://localhost:8080/twirp/com.rynop.coolapi.image.Image/CreateGiphy
+curl -H 'Content-Type:application/json' -d '{"term":"wahooo"}' http://localhost:8080/twirp/com.rynop.twirpl.image.Image/CreateGiphy
 ```
 2. Hit APIG endpoint using JSON:
 ```
 #kill ./bin/main that is running for local test
 #comment out http.ListenAndServe(":8080", mux) and un-comment log.Fatal(gateway.ListenAndServe("", mux)) in twirpl.go. Save file.
 env LAMBDA_NAME="TwirplTest" ./deploy.sh
-curl -H 'Content-Type:application/json' -d '{"term":"wahooo"}' https://<your APIG>.execute-api.us-east-1.amazonaws.com/prod/twirp/com.rynop.coolapi.image.Image/CreateGiphy
+curl -H 'Content-Type:application/json' -d '{"term":"wahooo"}' https://<your APIG>.execute-api.us-east-1.amazonaws.com/prod/twirp/com.rynop.twirpl.image.Image/CreateGiphy
 ```
 
 ### Testing protobuf
 
-> NOTE: currently waiting on resolution to https://github.com/twitchtv/twirp/pull/46 before this will work.  You can patch your generated `service.twirp.go` files until this issue is resolved.
+> NOTE: currently waiting on resolution to https://github.com/twitchtv/twirp/pull/46 before this will work.  You can patch your generated `service.twirp.go` files until this issue is resolved.  You can see the addtion on line 412 of each `service.twirp.go` files in this repo.
 
 See test case at [twirpl_test.go](./twirpl_test.go) for how to use the go client as well as sending protobuf requests.  
 
