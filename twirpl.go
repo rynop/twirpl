@@ -1,8 +1,10 @@
 package main
 
 import (
+	"log"
 	"net/http"
 
+	"github.com/apex/gateway"
 	"github.com/rynop/twirpl/internal/blogserver"
 	"github.com/rynop/twirpl/internal/imageserver"
 	"github.com/rynop/twirpl/rpc/blog"
@@ -23,8 +25,8 @@ func main() {
 	mux.Handle(image.ImagePathPrefix, imageHandler)
 
 	// Un-comment below to test locally
-	http.ListenAndServe(":8080", mux)
+	// http.ListenAndServe(":8080", mux)
 
 	// Un-comment below before deploying to Lambda
-	//log.Fatal(gateway.ListenAndServe("", mux))
+	log.Fatal(gateway.ListenAndServe("", mux))
 }

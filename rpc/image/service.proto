@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package com.rynop.coolapi.image;
+package com.rynop.twirpl.image;
 option go_package = "image";
 
 // Service to get Images

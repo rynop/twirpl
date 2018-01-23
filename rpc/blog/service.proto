@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package com.rynop.coolapi.blog;
+package com.rynop.twirpl.blog;
 option go_package = "blog";
 
 // Blog service to manage users of my blog

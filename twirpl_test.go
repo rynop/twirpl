@@ -11,11 +11,14 @@ import (
 )
 
 func TestHandler(t *testing.T) {
-	//Client for APIG
-	// client := image.NewImageProtobufClient("https://XXX.execute-api.us-east-1.amazonaws.com/Stage", &http.Client{})
+	//URL for APIG
+	urlPrefix := "https://co5gwn0iah.execute-api.us-east-1.amazonaws.com/prod"
+
+	//URL for local testing
+	// urlPrefix := "http://localhost:8080"
 
 	// Un-comment for testing locally
-	client := image.NewImageProtobufClient("http://localhost:8080", &http.Client{})
+	client := image.NewImageProtobufClient(urlPrefix, &http.Client{})
 
 	resp, err := client.CreateGiphy(context.Background(), &image.Search{Term: "wahooo"})
 	if err == nil {
