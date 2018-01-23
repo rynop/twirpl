@@ -1,12 +1,12 @@
 # Twirpl
 
-Boilerplate/guide for creating 100% serverless [Twirp](https://blog.twitch.tv/twirp-a-sweet-new-rpc-framework-for-go-5f2febbf35f#a99f) APIs via AWS Lambda and API Gateway.  Supports both JSON and protobuf.
+Boilerplate/guide for creating 100% serverless [Twirp](https://github.com/twitchtv/twirp) APIs via AWS Lambda and API Gateway.  Supports both JSON and protobuf.
 
 Please read my [blog post]() on why Twirp+APIG+Lambda are a powerful match for creating web APIs.
 
 ## Setup
 
-1. Install [Twirp](https://github.com/twitchtv/twirp/wiki)
+1. [Learn](https://blog.twitch.tv/twirp-a-sweet-new-rpc-framework-for-go-5f2febbf35f#a99f) about Twirp, then [Install Twirp](https://github.com/twitchtv/twirp/wiki)
 1. Two sample high level services are inside `rpc` dir.
 1. Auto-generate your code:
 ```
