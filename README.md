@@ -46,7 +46,7 @@ go build -o bin/main
 #in another terminal tab:
 curl -H 'Content-Type:application/json' -d '{"term":"wahooo"}' http://localhost:8080/twirp/com.rynop.twirpl.image.Image/CreateGiphy
 ```
-2. Hit APIG endpoint using JSON:
+2. Test APIG endpoint using JSON:
 ```
 #kill ./bin/main that is running for local test
 #comment out http.ListenAndServe(":8080", mux) and un-comment log.Fatal(gateway.ListenAndServe("", mux)) in twirpl.go. Save file.
