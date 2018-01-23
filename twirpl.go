@@ -26,5 +26,5 @@ func main() {
 	http.ListenAndServe(":8080", mux)
 
 	// Un-comment below before deploying to Lambda
-	//log.Fatal(gateway.ListenAndServe("", mux))
+	// log.Fatal(gateway.ListenAndServe("", mux))
 }

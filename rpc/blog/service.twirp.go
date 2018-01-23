@@ -409,9 +409,6 @@ func newRequest(ctx context.Context, url string, reqBody io.Reader, contentType 
 		req.Header = customHeader
 	}
 	req.Header.Set("Content-Type", contentType)
-	if "application/protobuf" == contentType {
-		req.Header.Set("Accept", contentType)
-	}
 	req.Header.Set("Twirp-Version", "v5.0.0")
 	return req, nil
 }
