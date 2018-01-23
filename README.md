@@ -42,12 +42,15 @@ cd ..
 1. Test locally using JSON:
 ```
 go build -o bin/main
-./bin/min
+./bin/main
 #in another terminal tab:
 curl -H 'Content-Type:application/json' -d '{"term":"wahooo"}' http://localhost:8080/twirp/com.rynop.coolapi.image.Image/CreateGiphy
 ```
 2. Hit APIG endpoint using JSON:
 ```
+#kill ./bin/main that is running for local test
+#comment out http.ListenAndServe(":8080", mux) and un-comment log.Fatal(gateway.ListenAndServe("", mux)) in twirpl.go. Save file.
+env LAMBDA_NAME="TwirplTest" ./deploy.sh
 curl -H 'Content-Type:application/json' -d '{"term":"wahooo"}' https://<your APIG>.execute-api.us-east-1.amazonaws.com/prod/twirp/com.rynop.coolapi.image.Image/CreateGiphy
 ```
 3. See test case at [twirpl_test.go](./twirpl_test.go) for how to use the go client as well as sending protobuf requests.  
