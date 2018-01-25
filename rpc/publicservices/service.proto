@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package com.rynop.twirpl.publicservices;
+option go_package = "publicservices";
+
+// Blog service to manage subscribers of my blog
+service Blog {
+  // Subscribe creates a blog subscription for user
+  rpc Subscribe(User) returns (User);
+}
+
+// User subscribing to my blog
+message User {
+  string id = 1;
+  string email = 2;
+  string name = 3;
+}
+
+// Service to get Images
+service Image {
+  // CreateGiphy produces a Giphy from a search term
+  rpc CreateGiphy(Search) returns (Giphy);
+}
+
+// Ways to search for a Giphy
+message Search {
+  string term = 1;
+}
+
+// Giphy that was found for search
+message Giphy {
+  string url = 1;
+}
+

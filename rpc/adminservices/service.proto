@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package com.rynop.twirpl.adminservices;
+option go_package = "adminservices";
+
+// Service to manage my blog
+service BlogAdmin {
+  // CreatePost creates a blog post
+  rpc CreatePost(Post) returns (Post);
+}
+
+// Blog post
+message Post {
+  string id = 1;
+  string title = 2;
+  string body = 3;
+}

@@ -6,6 +6,7 @@ import (
 
 	"github.com/rynop/twirpl/internal/blogserver"
 	"github.com/rynop/twirpl/internal/imageserver"
+	"github.com/rynop/twirpl/rpc/publicservices"
 )
 
 func main() {
@@ -13,15 +14,15 @@ func main() {
 	mux := http.NewServeMux()
 
 	//&blogserver.Server{} implements Blog interface
-	blogHandler := blog.NewBlogServer(&blogserver.Server{}, nil)
+	blogHandler := publicservices.NewBlogServer(&blogserver.Server{}, nil)
 	// The generated code includes a const, <ServiceName>PathPrefix, which
 	// can be used to mount your service on a mux.
-	mux.Handle(blog.BlogPathPrefix, blogHandler)
+	mux.Handle(publicservices.BlogPathPrefix, blogHandler)
 
-	imageHandler := image.NewImageServer(&imageserver.Server{}, nil)
-	mux.Handle(image.ImagePathPrefix, imageHandler)
+	imageHandler := publicservices.NewImageServer(&imageserver.Server{}, nil)
+	mux.Handle(publicservices.ImagePathPrefix, imageHandler)
 
-	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/health-check", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintln(w, "pong")
 	})
 

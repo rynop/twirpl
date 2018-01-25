@@ -3,7 +3,7 @@ package imageserver
 import (
 	"context"
 
-	pb "github.com/rynop/twirpl/rpc/image"
+	pb "github.com/rynop/twirpl/rpc/publicservices"
 	"github.com/twitchtv/twirp"
 )
 
