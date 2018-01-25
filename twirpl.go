@@ -1,12 +1,11 @@
 package main
 
 import (
+	"fmt"
 	"net/http"
 
 	"github.com/rynop/twirpl/internal/blogserver"
 	"github.com/rynop/twirpl/internal/imageserver"
-	"github.com/rynop/twirpl/rpc/blog"
-	"github.com/rynop/twirpl/rpc/image"
 )
 
 func main() {
@@ -21,6 +20,10 @@ func main() {
 
 	imageHandler := image.NewImageServer(&imageserver.Server{}, nil)
 	mux.Handle(image.ImagePathPrefix, imageHandler)
+
+	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		fmt.Fprintln(w, "pong")
+	})
 
 	// Un-comment below to test locally
 	http.ListenAndServe(":8080", mux)

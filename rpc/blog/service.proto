@@ -1,7 +1,7 @@
 syntax = "proto3";
 
-package com.rynop.twirpl.blog;
-option go_package = "blog";
+package com.rynop.twirpl;
+option go_package = "twirpl";
 
 // Blog service to manage users of my blog
 service Blog {
