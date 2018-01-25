@@ -10,8 +10,8 @@ Please read my [blog post](https://rynop.com/2018/01/23/twirpl-twirp-go-framewor
 1. Two sample high level services are inside `rpc` dir.
 1. Auto-generate your code:
 ```
-retool do protoc --proto_path=$GOPATH/src:. --twirp_out=. --go_out=. ./rpc/blog/service.proto 
-retool do protoc --proto_path=$GOPATH/src:. --twirp_out=. --go_out=. ./rpc/image/service.proto 
+retool do protoc --proto_path=$GOPATH/src:. --twirp_out=. --go_out=. ./rpc/publicservices/service.proto 
+retool do protoc --proto_path=$GOPATH/src:. --twirp_out=. --go_out=. ./rpc/adminservices/service.proto 
 ```
 4. Interface implementations for the services have already been created in `internal/`. Check them out.
 5. Build/package/create/deploy your lambda using a [lambda execution role](https://docs.aws.amazon.com/lambda/latest/dg/intro-permission-model.html#lambda-intro-execution-role):
@@ -44,14 +44,14 @@ cd ..
 go build -o bin/main
 ./bin/main
 #in another terminal tab:
-curl -H 'Content-Type:application/json' -d '{"term":"wahooo"}' http://localhost:8080/twirp/com.rynop.twirpl.image.Image/CreateGiphy
+curl -H 'Content-Type:application/json' -d '{"term":"wahooo"}' http://localhost:8080/twirp/com.rynop.twirpl.publicservices.Image/CreateGiphy
 ```
 2. Test APIG endpoint using JSON:
 ```
 #kill ./bin/main that is running for local test
 #comment out http.ListenAndServe(":8080", mux) and un-comment log.Fatal(gateway.ListenAndServe("", mux)) in twirpl.go. Save file.
 env LAMBDA_NAME="TwirplTest" ./deploy.sh
-curl -H 'Content-Type:application/json' -d '{"term":"wahooo"}' https://<your APIG>.execute-api.us-east-1.amazonaws.com/prod/twirp/com.rynop.twirpl.image.Image/CreateGiphy
+curl -H 'Content-Type:application/json' -d '{"term":"wahooo"}' https://<yourAPIG>.execute-api.us-east-1.amazonaws.com/prod/twirp/com.rynop.twirpl.publicservices.Image/CreateGiphy
 ```
 
 ### Testing protobuf

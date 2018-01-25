@@ -7,7 +7,7 @@ import (
 	"net/http"
 	"testing"
 
-	"github.com/rynop/twirpl/rpc/image"
+	"github.com/rynop/twirpl/rpc/publicservices"
 	"github.com/twitchtv/twirp"
 )
 
@@ -18,7 +18,7 @@ func TestHandler(t *testing.T) {
 	//URL for local testing
 	// urlPrefix := "http://localhost:8080"
 
-	client := image.NewImageProtobufClient(urlPrefix, &http.Client{})
+	client := publicservices.NewImageProtobufClient(urlPrefix, &http.Client{})
 
 	//Attach the required accept header for APIG binary support
 	header := make(http.Header)
@@ -30,7 +30,7 @@ func TestHandler(t *testing.T) {
 		return
 	}
 
-	resp, err := client.CreateGiphy(ctx, &image.Search{Term: "wahooo"})
+	resp, err := client.CreateGiphy(ctx, &publicservices.Search{Term: "wahooo"})
 	if err == nil {
 		fmt.Println(resp)
 	} else {
