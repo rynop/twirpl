@@ -71,3 +71,7 @@ Check out [deploy.sh](./deploy.sh) for a quick way to test changes to your lambd
 ```
 env LAMBDA_NAME="TwirplTest" ./deploy.sh
 ```
+
+## Javascript client
+
+A quick proof of concept can be seen at [twirpl_test.js](./twirpl_test.js)
