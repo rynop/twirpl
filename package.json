@@ -1,0 +1,27 @@
+{
+  "name": "twirpl",
+  "version": "1.0.0",
+  "description": "Twirp runnnig serverless on AWS APIG and Lambda",
+  "main": "twirpl_test.js",
+  "scripts": {
+    "test": "twirpl_test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@rynop-github.com:rynop/twirpl.git"
+  },
+  "keywords": [
+    "aws",
+    "twirp",
+    "serverless",
+    "apig",
+    "lambda",
+    "protobuf",
+    "proto"
+  ],
+  "author": "ryan.pendergast@gmail.com",
+  "license": "MIT",
+  "dependencies": {
+    "google-protobuf": "^3.5.0"
+  }
+}
