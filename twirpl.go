@@ -2,7 +2,9 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"net/http"
+	"os"
 
 	"github.com/rynop/twirpl/internal/blogserver"
 	"github.com/rynop/twirpl/internal/imageserver"
@@ -27,7 +29,12 @@ func main() {
 	})
 
 	// Un-comment below to test locally
-	http.ListenAndServe(":8080", mux)
+	listenPort, exists := os.LookupEnv("listenPort")
+	if !exists {
+		listenPort = "8080"
+	}
+	log.Print("Listening on " + listenPort)
+	http.ListenAndServe(":"+listenPort, mux)
 
 	// Un-comment below before deploying to Lambda
 	// log.Fatal(gateway.ListenAndServe("", mux))
