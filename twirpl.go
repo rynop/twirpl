@@ -24,15 +24,17 @@ func main() {
 	imageHandler := publicservices.NewImageServer(&imageserver.Server{}, nil)
 	mux.Handle(publicservices.ImagePathPrefix, imageHandler)
 
-	mux.HandleFunc("/health-check", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintln(w, "pong")
+	appStage, _ := os.LookupEnv("APP_STAGE")
+	mux.HandleFunc("/healthcheck", func(w http.ResponseWriter, r *http.Request) {
+		fmt.Fprintln(w, "pong:"+appStage)
 	})
 
 	// Un-comment below to test locally
-	listenPort, exists := os.LookupEnv("listenPort")
+	listenPort, exists := os.LookupEnv("LISTEN_PORT")
 	if !exists {
 		listenPort = "8080"
 	}
+
 	log.Print("Listening on " + listenPort)
 	http.ListenAndServe(":"+listenPort, mux)
 
