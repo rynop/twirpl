@@ -26,7 +26,7 @@ func main() {
 
 	appStage, _ := os.LookupEnv("APP_STAGE")
 	mux.HandleFunc("/healthcheck", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintln(w, "pong:"+appStage)
+		fmt.Fprintln(w, "pong. stage:"+appStage)
 	})
 
 	// Un-comment below to test locally
@@ -35,7 +35,7 @@ func main() {
 		listenPort = "8080"
 	}
 
-	log.Print("Listening on " + listenPort)
+	log.Print("Listening on " + listenPort + " in stage" + appStage)
 	http.ListenAndServe(":"+listenPort, mux)
 
 	// Un-comment below before deploying to Lambda
