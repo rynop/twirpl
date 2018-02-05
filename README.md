@@ -13,7 +13,7 @@ Please read my [blog post](https://rynop.com/2018/01/23/twirpl-twirp-go-framewor
 retool do protoc --proto_path=$GOPATH/src:. --twirp_out=. --go_out=. ./rpc/publicservices/service.proto 
 retool do protoc --proto_path=$GOPATH/src:. --twirp_out=. --go_out=. ./rpc/adminservices/service.proto 
 ```
-4. Interface implementations for the services have already been created in `internal/`. Check them out.
+4. For this project, the interface implementations been hand created in `internal/`. Take a look.
 5. Build/package/create/deploy your lambda using a [lambda execution role](https://docs.aws.amazon.com/lambda/latest/dg/intro-permission-model.html#lambda-intro-execution-role):
 ```
 #from proj root. I use fish shell, modify for your shell
