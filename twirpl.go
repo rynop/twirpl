@@ -12,6 +12,11 @@ import (
 )
 
 func main() {
+	//Dump all env vars
+	for _, pair := range os.Environ() {
+		fmt.Println(pair)
+	}
+
 	// You can use any mux you like
 	mux := http.NewServeMux()
 
