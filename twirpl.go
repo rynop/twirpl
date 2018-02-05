@@ -36,6 +36,7 @@ func main() {
 	}
 
 	log.Print("Listening on " + listenPort + " in stage" + appStage)
+	//comment out below if serving over lambda
 	http.ListenAndServe(":"+listenPort, mux)
 
 	// Un-comment below before deploying to Lambda
