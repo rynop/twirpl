@@ -6,9 +6,9 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/doapp/ecs-test/pkg/blogserver"
-	"github.com/doapp/ecs-test/pkg/imageserver"
-	"github.com/doapp/ecs-test/rpc/publicservices"
+	"github.com/rynop/twirpl/pkg/blogserver"
+	"github.com/rynop/twirpl/pkg/imageserver"
+	"github.com/rynop/twirpl/rpc/publicservices"
 )
 
 func main() {

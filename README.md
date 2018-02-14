@@ -8,8 +8,7 @@ This project layout is based on [golang-standards/project-layout](https://github
 
 ## Setup
 
-1. [Learn](https://blog.twitch.tv/twirp-a-sweet-new-rpc-framework-for-go-5f2febbf35f#a99f) about Twirp, then [Install Twirp](https://github.com/twitchtv/twirp/wiki)
-1. (Install retool)[https://github.com/twitchtv/retool#usage]. Make sure to add `$GOPATH/bin` to your PATH
+1. [Learn](https://blog.twitch.tv/twirp-a-sweet-new-rpc-framework-for-go-5f2febbf35f#a99f) about Twirp, then [Install Twirp](https://github.com/twitchtv/twirp/wiki) WITH retool.  Make sure to add `$GOPATH/bin` to your $PATH
 1. `retool add github.com/golang/dep/cmd/dep origin/master`
 1. `retool do dep init`
 1. Auto-generate your code:
@@ -20,7 +19,7 @@ retool do protoc --proto_path=$GOPATH/src:. --twirp_out=. --go_out=. ./rpc/admin
 4. For this project, the interface implementations have been hand created in `pkg/`. Take a look.
 5. Build/package/create/deploy your lambda using a [lambda execution role](https://docs.aws.amazon.com/lambda/latest/dg/intro-permission-model.html#lambda-intro-execution-role):
 ```
-#from proj root. I use fish shell, modify for your shell
+#Run these from cmd/twirpl-webservices. I use fish shell, modify for your shell
 env GOOS=linux go build -o bin/main
 cd bin; zip deployment.zip main
 aws lambda create-function \
@@ -32,7 +31,6 @@ aws lambda create-function \
 --role arn:aws:iam::<account-id>:role/<lambda execution role> \
 --handler main
 rm deployment.zip main
-cd ..
 ```
 6. Use AWS Lambda console to assign a API Gateway trigger.  Make sure to choose `security` of `open`.
 7. After APIG created, login into APIG console and delete all the resources.  Add a `{proxy+}` with an `ANY` under it.  Hookup a lambda proxy integration to your lambda.  Should look something like this:
@@ -45,8 +43,8 @@ cd ..
 
 1. Test locally using JSON:
 ```
-go build -o bin/main
-./bin/main
+docker build -f build/Dockerfile -t twirpl .
+docker run -p 8080:8080 twirpl
 #in another terminal tab:
 curl -H 'Content-Type:application/json' -d '{"term":"wahooo"}' http://localhost:8080/twirp/com.rynop.twirpl.publicservices.Image/CreateGiphy
 ```
@@ -79,12 +77,3 @@ env LAMBDA_NAME="TwirplTest" ./deploy.sh
 ## Javascript client
 
 A quick proof of concept can be seen at [twirpl_test.js](./twirpl_test.js)
-
-## Docker
-
-See [build/Dockerfile](build/Dockerfile)
-
-```
-docker build -f build/Dockerfile -t twirpl .
-docker run -p 8080:8080 twirpl
-```
