@@ -17,4 +17,5 @@
 bin/
 rpc/*.go
 node_modules
-_tools
+_tools  #should check this into production
+vendor #should check this into production
