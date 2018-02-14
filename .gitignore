@@ -17,3 +17,4 @@
 bin/
 rpc/*.go
 node_modules
+_tools

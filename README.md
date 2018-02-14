@@ -4,6 +4,8 @@ Boilerplate/guide for creating 100% serverless [Twirp](https://github.com/twitch
 
 Please read my [blog post](https://rynop.com/2018/01/23/twirpl-twirp-go-framework-running-completely-serverless/) on why Twirp+APIG+Lambda are a powerful match for creating web APIs.
 
+This project layout is based on [golang-standards/project-layout](https://github.com/golang-standards/project-layout)
+
 ## Setup
 
 1. [Learn](https://blog.twitch.tv/twirp-a-sweet-new-rpc-framework-for-go-5f2febbf35f#a99f) about Twirp, then [Install Twirp](https://github.com/twitchtv/twirp/wiki)
@@ -13,7 +15,7 @@ Please read my [blog post](https://rynop.com/2018/01/23/twirpl-twirp-go-framewor
 retool do protoc --proto_path=$GOPATH/src:. --twirp_out=. --go_out=. ./rpc/publicservices/service.proto 
 retool do protoc --proto_path=$GOPATH/src:. --twirp_out=. --go_out=. ./rpc/adminservices/service.proto 
 ```
-4. For this project, the interface implementations been hand created in `internal/`. Take a look.
+4. For this project, the interface implementations have been hand created in `pkg/`. Take a look.
 5. Build/package/create/deploy your lambda using a [lambda execution role](https://docs.aws.amazon.com/lambda/latest/dg/intro-permission-model.html#lambda-intro-execution-role):
 ```
 #from proj root. I use fish shell, modify for your shell
@@ -75,3 +77,12 @@ env LAMBDA_NAME="TwirplTest" ./deploy.sh
 ## Javascript client
 
 A quick proof of concept can be seen at [twirpl_test.js](./twirpl_test.js)
+
+## Docker
+
+See [build/Dockerfile](build/Dockerfile)
+
+```
+docker build -f build/Dockerfile -t twirpl .
+docker run -p 8080:8080 twirpl
+```
