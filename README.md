@@ -9,7 +9,9 @@ This project layout is based on [golang-standards/project-layout](https://github
 ## Setup
 
 1. [Learn](https://blog.twitch.tv/twirp-a-sweet-new-rpc-framework-for-go-5f2febbf35f#a99f) about Twirp, then [Install Twirp](https://github.com/twitchtv/twirp/wiki)
-1. Two sample high level services are inside `rpc` dir.
+1. (Install retool)[https://github.com/twitchtv/retool#usage]. Make sure to add `$GOPATH/bin` to your PATH
+1. `retool add github.com/golang/dep/cmd/dep origin/master`
+1. `retool do dep init`
 1. Auto-generate your code:
 ```
 retool do protoc --proto_path=$GOPATH/src:. --twirp_out=. --go_out=. ./rpc/publicservices/service.proto 
