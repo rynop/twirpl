@@ -38,7 +38,7 @@ rm deployment.zip main
 * Setup APIG to handle `application/protobuf` as a binary:
 ![APIG bin](https://rynop.files.wordpress.com/2018/01/screen-shot-2018-01-22-at-3-20-18-pm.png?w=1848)
 * Deploy your APIG stage (copy down the APIG invocation URL)
-* Look at [.gitignore](.gitignore) because you should check in `_tools` and `vendor` to real projects
+* Modify [.gitignore](.gitignore) because you should check in `_tools` and `vendor` to real projects
 
 ## Test your endpoints
 
