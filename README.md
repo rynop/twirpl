@@ -2,7 +2,7 @@
 
 Boilerplate/guide for creating 100% serverless [Twirp](https://github.com/twitchtv/twirp) APIs via AWS Lambda and API Gateway.  Supports both JSON and protobuf.  Twirpl uses the go dependency tool [dep](https://github.com/golang/dep)
 
-Please read my [blog post](https://rynop.com/2018/01/23/twirpl-twirp-go-framework-running-completely-serverless/) on why Twirp+APIG+Lambda are a powerful match for creating web APIs.
+**WHY?** Read my [blog post](https://rynop.com/2018/01/23/twirpl-twirp-go-framework-running-completely-serverless/) on why Twirp+APIG+Lambda are a powerful match for creating web APIs.
 
 This project layout is based on [golang-standards/project-layout](https://github.com/golang-standards/project-layout)
 
