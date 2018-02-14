@@ -38,6 +38,7 @@ rm deployment.zip main
 8. Setup APIG to handle `application/protobuf` as a binary:
 ![APIG bin](https://rynop.files.wordpress.com/2018/01/screen-shot-2018-01-22-at-3-20-18-pm.png?w=1848)
 9. Deploy your APIG stage (copy down the APIG invocation URL)
+10. Look at [.gitignore](.gitignore) because you should check in `_tools` and `vendor` to real projects
 
 ## Test your endpoints
 
@@ -50,7 +51,7 @@ curl -H 'Content-Type:application/json' -d '{"term":"wahooo"}' http://localhost:
 ```
 2. Test APIG endpoint using JSON:
 ```
-#kill ./bin/main that is running for local test
+#kill running docker container
 #comment out http.ListenAndServe(":8080", mux) and un-comment log.Fatal(gateway.ListenAndServe("", mux)) in twirpl.go. Save file.
 env LAMBDA_NAME="TwirplTest" ./deploy.sh
 curl -H 'Content-Type:application/json' -d '{"term":"wahooo"}' https://<yourAPIG>.execute-api.us-east-1.amazonaws.com/prod/twirp/com.rynop.twirpl.publicservices.Image/CreateGiphy
