@@ -1,15 +1,27 @@
 package main
 
 import (
+	"context"
 	"fmt"
 	"log"
 	"net/http"
 	"os"
 
+	"github.com/rynop/twirpl/pkg/authn"
 	"github.com/rynop/twirpl/pkg/blogserver"
 	"github.com/rynop/twirpl/pkg/imageserver"
 	"github.com/rynop/twirpl/rpc/publicservices"
 )
+
+func addHeadersToContext(h http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		ctx := r.Context()
+		ctx = context.WithValue(ctx, "Authorization", r.Header.Get("Authorization"))
+		ctx = context.WithValue(ctx, "X-From-CDN", r.Header.Get("X-From-CDN"))
+		r = r.WithContext(ctx)
+		h.ServeHTTP(w, r)
+	})
+}
 
 func main() {
 	//Dump all env vars
@@ -20,14 +32,15 @@ func main() {
 	// You can use any mux you like
 	mux := http.NewServeMux()
 
-	//&blogserver.Server{} implements Blog interface
-	blogHandler := publicservices.NewBlogServer(&blogserver.Server{}, nil)
-	// The generated code includes a const, <ServiceName>PathPrefix, which
-	// can be used to mount your service on a mux.
-	mux.Handle(publicservices.BlogPathPrefix, blogHandler)
+	authnHooks := authn.NewAuthNServerHooks()
 
-	imageHandler := publicservices.NewImageServer(&imageserver.Server{}, nil)
-	mux.Handle(publicservices.ImagePathPrefix, imageHandler)
+	blogServerHandler := publicservices.NewBlogServer(&blogserver.Server{}, authnHooks) //authnHooks reads someKey from ctx
+	wrappedBlogHandler := addHeadersToContext(blogServerHandler)
+	mux.Handle(publicservices.BlogPathPrefix, wrappedBlogHandler)
+
+	imageHandler := publicservices.NewImageServer(&imageserver.Server{}, authnHooks)
+	wrappedImageHandler := addHeadersToContext(imageHandler)
+	mux.Handle(publicservices.ImagePathPrefix, wrappedImageHandler)
 
 	appStage, _ := os.LookupEnv("APP_STAGE")
 	mux.HandleFunc("/healthcheck", func(w http.ResponseWriter, r *http.Request) {
