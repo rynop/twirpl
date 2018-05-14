@@ -4,7 +4,7 @@ import (
 	"context"
 	"log"
 
-	"github.com/twitchtv/twirp"
+	"github.com/rynop/twirp"
 )
 
 func checkAuthN(ctx context.Context) bool {

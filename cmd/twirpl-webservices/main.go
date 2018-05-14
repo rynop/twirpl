@@ -1,7 +1,6 @@
 package main
 
 import (
-	"context"
 	"fmt"
 	"log"
 	"net/http"
@@ -16,8 +15,8 @@ import (
 func addHeadersToContext(h http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		ctx := r.Context()
-		ctx = context.WithValue(ctx, "Authorization", r.Header.Get("Authorization"))
-		ctx = context.WithValue(ctx, "X-From-CDN", r.Header.Get("X-From-CDN"))
+		ctx = ctx.WithValue(ctx, "Authorization", r.Header.Get("Authorization"))
+		ctx = ctx.WithValue(ctx, "X-From-CDN", r.Header.Get("X-From-CDN"))
 		r = r.WithContext(ctx)
 		h.ServeHTTP(w, r)
 	})
